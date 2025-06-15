@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Status>
+
+
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">
+        No Buys yet.
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center gap-2 my-4">
+        @for (int i = 1; i <= 5; i++)
+        {
+            <a asp-controller="Show" asp-route-status="@Context.Request.Query["status"]" asp-action="BuysByStatus" asp-area="" asp-route-PageNumber="@i"
+               class="btn @(i == ViewBag.x ? "btn-primary" : "btn-outline-primary") rounded-pill px-3 py-2">
+                @i
+            </a>
+        }
+    </div>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@item.Buy.Product.ImageUrl" width="100%" height="225" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Name of client @item.Buy.User.FullName</p>
+                                <p class="card-text">Phone of client @item.Buy.User.PhoneNumber</p>
+                                <p class="card-text">Quantity of Delivery @item.Buy.Quantity</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">Address of Delivery @item.Buy.Address</small>
+                                    <small class="text-muted">Day of Delivery @item.Buy.Day</small>
+                                    <small class="text-muted">Date of Delivery @item.Buy.Date</small>
+                                    <small class="text-muted">Hour of Delivery @item.Buy.Hour</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+

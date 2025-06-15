@@ -1,0 +1,36 @@
+﻿@model Tawsel.ViewModels.EditViewModel;
+@using Tawsel.Enums.ProductEnum;
+
+
+@* Id is known here so  <input asp-for="Id" type="hidden"/>   it will know the value without u assign it in the input
+ *@
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input asp-for="Id" type="hidden"/>  
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Department">Category</label>
+        <select asp-for="Department" class="form-control" asp-items="@Html.GetEnumSelectList<ProductDepartment>()">
+            <option>--select--</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Salary">City</label>
+        <input asp-for="Salary" class="form-control" placeholder="Salary">
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Image</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

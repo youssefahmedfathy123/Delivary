@@ -1,0 +1,20 @@
+﻿@model Tawsel.ViewModels.Admin.SetDelivaryManVM
+
+
+
+
+
+<form asp-action="SetDelivaryMan" method="post">
+<input type="hidden" asp-for="DelivaryManId"/>
+
+    <div class="form-group mb-3">
+        <label asp-for="BuyId" class="control-label">BuyId</label>
+        <input asp-for="BuyId" class="form-control" rows="4" type="text" />
+        <span asp-validation-for="BuyId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Set</button>
+</form>
+
+
+

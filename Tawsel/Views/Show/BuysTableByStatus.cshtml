@@ -1,0 +1,23 @@
+﻿@model Tawsel.ViewModels.Admin.BuyTableByStatusVM
+@using Tawsel.Enums.Status;
+
+@{
+    ViewData["Title"] = "Get Buy Table By Day And Date";
+}
+
+
+<form asp-action="BuysTableByStatus" method="post">
+
+    <div class="form-group mb-3">
+        <label asp-for="BuysStatus" class="control-label">Status</label>
+        <select asp-for="BuysStatus" class="form-control"
+                asp-items="Html.GetEnumSelectList<BuysStatus>()">
+            <option value="">-- Select Status --</option>
+        </select>
+        <span asp-validation-for="BuysStatus" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Searech</button>
+</form>
+
+

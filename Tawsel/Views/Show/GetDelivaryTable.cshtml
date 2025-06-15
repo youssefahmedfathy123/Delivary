@@ -1,0 +1,31 @@
+﻿@model Tawsel.ViewModels.Admin.GetBuyTableByDayAndDateVM
+
+
+@using Tawsel.Enums.Delivary;
+
+
+@{
+    ViewData["Title"] = "Get Buy Table By Day And Date";
+}
+
+
+<form asp-action="GetDelivaryTable" method="post">
+
+    <div class="form-group mb-3">
+        <label asp-for="Date" class="control-label">Name</label>
+        <input asp-for="Date" class="form-control" type="date" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Day" class="control-label">Day</label>
+        <select asp-for="Day" class="form-control"
+                asp-items="Html.GetEnumSelectList<Day>()">
+            <option value="">-- Select Status --</option>
+        </select>
+        <span asp-validation-for="Day" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Searech</button>
+</form>
+

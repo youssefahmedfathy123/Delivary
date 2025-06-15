@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Product>
+
+
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">
+        No products available yet.
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center gap-2 my-4">
+        @for (int i = 1; i <= 5; i++)
+        {
+            <a asp-controller="Product" asp-action="Index" asp-area="" asp-route-PageNumber="@i"
+            class="btn @(i == ViewBag.CurrentPage ? "btn-primary" : "btn-outline-primary") rounded-pill px-3 py-2">
+                @i
+            </a>
+        }
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@item.ImageUrl" width="100%" height="225" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">@item.Name</p>
+                                <p class="card-text">@item.Salary</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                        {
+                                            <a type="btn btn-success" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <a type="btn btn-success" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        }
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a type="btn btn-success" asp-controller="Buy" asp-action="Add" asp-route-ProductId="@item.Id" class="btn btn-sm btn-outline-secondary">Buy</a>
+                                            <a asp-controller="Favourite" asp-action="Add" asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-link text-danger p-0 ms-2 heart-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                </svg>
+                                            </a>
+                                        }
+                                    </div>
+                                    <small class="text-muted">@item.Department</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+

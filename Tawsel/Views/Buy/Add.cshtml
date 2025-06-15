@@ -1,0 +1,51 @@
+﻿@model Tawsel.ViewModels.BuyViewModel;
+@using Tawsel.Enums.Delivary;
+
+
+
+    <form asp-action="Add" method="post">
+        <input asp-for="ProductId" type="hidden"/>
+        <input asp-for="UserId" type="hidden" />
+
+        <h1>What is the quantity you need to buy this product?</h1>
+        <div class="form-group mb-3">
+        <label asp-for="Quantity" class="control-label">Quantity</label>
+        <input asp-for="Quantity" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+        <label asp-for="Address" class="control-label">Address</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+
+        <h2>Salaries</h2>
+        <h5>Today : 10$</h5>
+        <h5>After 2 days  : 7$</h5>
+        <h5>After 6 days  : 5$</h5>
+        <hr/>
+
+        <div class="form-group mb-3">
+            <label asp-for="Day" class="control-label">Day</label>
+            <select asp-for="Day" class="form-control"
+                    asp-items="Html.GetEnumSelectList<Day>()">
+                <option value="">-- Select Status --</option>
+            </select>
+            <span asp-validation-for="Day" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Hour" class="control-label">Hour</label>
+            <select asp-for="Hour" class="form-control"
+                    asp-items="Html.GetEnumSelectList<Hour>()">
+                <option value="">-- Select Status --</option>
+            </select>
+            <span asp-validation-for="Day" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Date" class="control-label">Image</label>
+            <input asp-for="Date" class="form-control" type="date"/>
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        </div>
+    <button type="submit" class="btn btn-primary">Add To Cart</button>
+</form>
+
+

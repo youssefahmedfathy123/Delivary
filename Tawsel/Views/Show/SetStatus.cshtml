@@ -1,0 +1,25 @@
+﻿@model Tawsel.ViewModels.Admin.SetStatusViewModel
+@using Tawsel.Enums.Status;
+
+
+
+@{
+    ViewData["Title"] = "Set Status";
+}
+
+
+<form asp-action="SetStatus" method="post">
+<input type="hidden" asp-for="BuyId"/>
+
+    <label asp-for="BuysStatus" class="control-label">Day</label>
+    <select asp-for="BuysStatus" class="form-control"
+            asp-items="Html.GetEnumSelectList<BuysStatus>()">
+        <option value="">-- Select Status --</option>
+    </select>
+    <span asp-validation-for="BuysStatus" class="text-danger"></span>
+
+    <button type="submit" class="btn btn-primary">Set</button>
+</form>
+
+
+
