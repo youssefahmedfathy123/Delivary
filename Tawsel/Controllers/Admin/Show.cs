@@ -15,18 +15,19 @@ namespace Tawsel.Controllers.Admin
     public class Show : Controller
     {
         private readonly IRepository<Buy> _repos;
+        private readonly IRepository<Status> _reposStatus;
         private readonly ApplicationDbContext _context;
-        private readonly IRepository<Delivary> _reposDel;
+        private readonly IRepository<Delivary> _reposDel; 
 
 
-        public Show(IRepository<Buy> repos, ApplicationDbContext context, IRepository<Delivary> reposDel)
+        public Show(IRepository<Buy> repos, ApplicationDbContext context, IRepository<Delivary> reposDel, IRepository<Status> reposStatus)
         {
             _repos = repos;
             _context = context;
             _reposDel = reposDel;
+            _reposStatus = reposStatus;
         }
 
-        // get Buy table 
         public async Task<IActionResult> GetBuyTable(int PageNumber = 1)
         {
             var result = await _context.Buys.Include(x => x.Product).Include(x => x.User).Skip(2 * (PageNumber - 1)).Take(2)
@@ -35,7 +36,6 @@ namespace Tawsel.Controllers.Admin
             return View(result);
         }
 
-        // get Buy table By day and date
         public async Task<IActionResult> GetBuyTableByDayAndDate()
         {
             return View(new GetBuyTableByDayAndDateVM());
@@ -60,8 +60,6 @@ namespace Tawsel.Controllers.Admin
                     return View(result ?? new List<Buy>());
         }
 
-
-        //  Get all delivary men 
         public async Task<IActionResult> GetDelivaryMen(int PageNumber = 1)
         {
             var delivaryMen = await _context.Users
@@ -70,7 +68,6 @@ namespace Tawsel.Controllers.Admin
             return View(delivaryMen);
         }
 
-        //Set Delivary man
         public async Task<IActionResult> SetDelivaryMan(string id)
         {
             var x = new SetDelivaryManVM
@@ -89,14 +86,13 @@ namespace Tawsel.Controllers.Admin
                 DelivaryManId = model.DelivaryManId,
                 BuyId = model.BuyId
             };
-            await _context.AddAsync(newTable);
-            await _context.SaveChangesAsync();
+            await _reposDel.Add(newTable);
+            await _reposDel.Save();
 
             return RedirectToAction("GetDelivaryMen");
 
         }
 
-        // get Delivary table
         public async Task<IActionResult> GetDelivaryTable()
         {
             return View(new GetBuyTableByDayAndDateVM());
@@ -143,8 +139,8 @@ namespace Tawsel.Controllers.Admin
                 BuyStatus = model.BuysStatus
             };
 
-            await _context.AddAsync(newTable);
-            await _context.SaveChangesAsync();
+            await _reposStatus.Add(newTable);
+            await _reposStatus.Save();
 
             return RedirectToAction("GetBuyTable");
 

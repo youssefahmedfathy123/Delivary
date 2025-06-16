@@ -240,3 +240,4 @@ C:\Users\VIP\Desktop\Tawsel\Tawsel\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Users\VIP\Desktop\Tawsel\Tawsel\bin\Debug\net9.0\FluentValidation.dll
 C:\Users\VIP\Desktop\Tawsel\Tawsel\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\VIP\Desktop\Tawsel\Tawsel\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\VIP\Desktop\Tawsel\Tawsel\obj\Debug\net9.0\Tawsel.sourcelink.json

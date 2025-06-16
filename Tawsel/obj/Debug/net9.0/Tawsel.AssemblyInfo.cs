@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tawsel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9cb9f12ba4d91fdaf896d11c2c4b8880228ed03")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tawsel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tawsel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

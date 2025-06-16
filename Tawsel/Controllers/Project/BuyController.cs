@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Tawsel.Data;
+using Tawsel.Interfaces;
 using Tawsel.Models;
 using Tawsel.ViewModels;
 
@@ -9,10 +10,10 @@ namespace Tawsel.Controllers.Project
     public class BuyController : Controller
     {
 
-        private readonly ApplicationDbContext _context;
-        public BuyController(ApplicationDbContext context)
+        private readonly IRepository<Buy> _repo;
+        public BuyController(IRepository<Buy> repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         public IActionResult Add(int ProductId)
@@ -43,9 +44,9 @@ namespace Tawsel.Controllers.Project
                 Address = buy.Address
             };
 
-            await _context.Buys.AddAsync(NewObj);
+            await _repo.Add(NewObj);
 
-            await _context.SaveChangesAsync();
+            await _repo.Save();
 
             return RedirectToAction("Index","Product");
         }

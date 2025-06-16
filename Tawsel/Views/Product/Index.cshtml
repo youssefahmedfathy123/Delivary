@@ -11,10 +11,10 @@
 else
 {
     <div class="d-flex justify-content-center gap-2 my-4">
-        @for (int i = 1; i <= 5; i++)
+        @for (int i = 1; i <= 10; i++)
         {
             <a asp-controller="Product" asp-action="Index" asp-area="" asp-route-PageNumber="@i"
-            class="btn @(i == ViewBag.CurrentPage ? "btn-primary" : "btn-outline-primary") rounded-pill px-3 py-2">
+               class="btn @(i == ViewBag.CurrentPage ? "btn-primary" : "btn-outline-primary") rounded-pill px-3 py-2">
                 @i
             </a>
         }
@@ -39,8 +39,8 @@ else
                                         }
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <a type="btn btn-success" asp-controller="Buy" asp-action="Add" asp-route-ProductId="@item.Id" class="btn btn-sm btn-outline-secondary">Buy</a>
-                                            <a asp-controller="Favourite" asp-action="Add" asp-route-id="@item.Id"
+                                            <a type="btn btn-success" asp-controller="Buy" asp-action="Add" asp-route-ProductId="@item.Id"  class="btn btn-sm btn-outline-secondary">Buy</a>
+                                            <a asp-controller="Favourite" asp-action="Add" asp-route-PageNumber="@ViewBag.CurrentPage"  asp-route-id="@item.Id"
                                                class="btn btn-sm btn-link text-danger p-0 ms-2 heart-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />

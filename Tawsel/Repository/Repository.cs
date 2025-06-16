@@ -20,26 +20,22 @@ namespace Tawsel.Repository
 
             return "Created";
         }
-
         public async Task<string> Delete(T record)
         {
             _context.Remove(record);
             return "Deleted";
             
         }
-
         public string Edit(T newRecord)
         {
             _context.Update(newRecord);
             return "Updated";
         }
-
         public async Task<List<T>> GetAll() 
         {
             var table = await _context.Set<T>().AsNoTracking().ToListAsync();
             return table;
         }
-
         public async Task<bool> Save()
         {
             var res = await _context.SaveChangesAsync();

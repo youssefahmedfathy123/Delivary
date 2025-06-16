@@ -28,7 +28,7 @@ namespace Tawsel.Controllers.Project
         {            
             var gets = await _context.Products.Skip(2*(PageNumber -1)).Take(2)
                 .ToListAsync();
-
+            ViewBag.CurrentPage = PageNumber;
             return View(gets);
 
         }
@@ -66,8 +66,6 @@ namespace Tawsel.Controllers.Project
 
             return RedirectToAction("Index");
         }
-
-
 
         public async Task<IActionResult> Edit(int id)
         {
